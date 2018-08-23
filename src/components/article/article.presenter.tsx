@@ -1,15 +1,14 @@
 import * as React from 'react';
 
 export interface Article {
-    id: number;
-    name: string;
-    quantitiy: number;
+	id: number;
+	name: string;
+	quantitiy: number;
 }
 
-
 interface Props extends Article {
-	onDelete: (id: number) => {};
-	onQuantityChange: (quantity: string) => {};
+	onDelete: (id: number) => void;
+	onQuantityChange: (quantity: string) => void;
 }
 
 const Article: React.SFC<Props> = ({ name, id, quantitiy, onDelete, onQuantityChange }) => (
@@ -17,7 +16,14 @@ const Article: React.SFC<Props> = ({ name, id, quantitiy, onDelete, onQuantityCh
 		<span>
 			{id} - {name}
 		</span>
-		<input onChange={(e)=>onQuantityChange(e.target.value)}>{quantitiy}</input>
+		<input
+			type="text"
+			onChange={(e) => {
+				console.dir(e.currentTarget);
+				onQuantityChange(e.currentTarget.value);
+			}}
+			defaultValue={String(quantitiy)}
+		/>
 		<button onClick={() => onDelete(id)}>Delete Article</button>
 	</li>
 );

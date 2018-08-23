@@ -1,21 +1,52 @@
-import { AnyAction } from 'redux';
+import { Reducer } from 'redux';
+import { BasketState, initialState } from '../basket.state';
+import { BasketAction, BasketActionType } from '../actions/basket';
 
-const basket = (state = [], action: AnyAction) => {
+export const basketReducer: Reducer<BasketState, BasketAction> = (state = initialState, action) => {
 	switch (action.type) {
-		case 'DELETE_BASKET':
-			return [
+		case BasketActionType.addArticle: {
+			return {
 				...state,
-				{
-					id: action.id,
-					text: action.text,
-					completed: false
-				}
-			];
-		case 'TOGGLE_TODO':
-			return state.map((todo) => (todo.id === action.id ? { ...todo, completed: !todo.completed } : todo));
-		default:
+				articles: [ ...state.articles, action.payload.article ]
+			};
+		}
+		case BasketActionType.changeArticleQuantity: {
+			return {
+				...state,
+				articles: state.articles.map(
+					(article) =>
+						article.id === action.payload.id ? { ...article, quantity: action.payload.quantity } : article
+				)
+			};
+		}
+		case BasketActionType.deleteArticle: {
+			const articleToDelete = state.articles.find((article) => article.id === action.payload.id);
+			if (!!articleToDelete) {
+				const deleteIndex = state.articles.indexOf(articleToDelete);
+				const articles = [ ...state.articles ];
+				articles.splice(deleteIndex, 1);
+				return {
+					...state,
+					articles
+				};
+			} else {
+				return state;
+			}
+		}
+		case BasketActionType.deleteBasket: {
+			return {
+				...state,
+				articles: []
+			};
+		}
+		case BasketActionType.setBasketInfoVisibility: {
+			return {
+				...state,
+				isBasketInfoVisible: action.payload.isVisible
+			};
+		}
+		default: {
 			return state;
+		}
 	}
 };
-
-export default basket;

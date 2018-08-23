@@ -10,6 +10,9 @@
   "rules": {
     "ordered-imports": false,
     "interface-name": false,
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": false,
+    "no-empty-interface": false,
+    "no-console": false
   }
 }

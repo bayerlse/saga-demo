@@ -3,8 +3,8 @@ import ArticleItem, { Article } from '../article/article.presenter';
 
 interface Props {
 	articles: Article[];
-	onDeleteArticle: (id: number) => {};
-	onArticleQuantityChange: (id: number, quantity: string) => {};
+	onDeleteArticle: (id: number) => void;
+	onArticleQuantityChange: (id: number, quantity: number) => void;
 }
 const BasketList: React.SFC<Props> = ({ articles, onDeleteArticle, onArticleQuantityChange }) => (
 	<div>
@@ -13,9 +13,9 @@ const BasketList: React.SFC<Props> = ({ articles, onDeleteArticle, onArticleQuan
 				<ArticleItem
 					key={article.id}
 					{...article}
-					id={index}
+					id={article.id}
 					onDelete={() => onDeleteArticle(article.id)}
-					onQuantityChange={(qty) => onArticleQuantityChange(article.id, qty)}
+					onQuantityChange={(qty) => onArticleQuantityChange(article.id, Number(qty))}
 				/>
 			))}
 		</ul>
