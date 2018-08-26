@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface Props {
+export interface Props {
 	onClick: () => {};
 }
 const BasketDelete: React.SFC<Props> = ({ onClick }) => <button onClick={() => onClick()}>Delete Basket</button>;

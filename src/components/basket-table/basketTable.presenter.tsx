@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ArticleItem, { Article } from '../article/article.presenter';
 
-interface Props {
+export interface Props {
 	articles: Article[];
 	onDeleteArticle: (id: number) => void;
 	onArticleQuantityChange: (id: number, quantity: number) => void;

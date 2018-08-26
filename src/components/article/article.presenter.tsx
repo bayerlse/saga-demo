@@ -19,7 +19,6 @@ const Article: React.SFC<Props> = ({ name, id, quantitiy, onDelete, onQuantityCh
 		<input
 			type="text"
 			onChange={(e) => {
-				console.dir(e.currentTarget);
 				onQuantityChange(e.currentTarget.value);
 			}}
 			defaultValue={String(quantitiy)}
