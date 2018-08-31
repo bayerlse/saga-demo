@@ -1,6 +1,6 @@
 import { Props } from './basketDeletion.presenter';
 import { Dispatch } from 'redux';
-import { BasketActionCreators } from '../../state/actions/basket';
+import { BasketActionCreators } from '../../state/actions/basket.actions';
 import BasketDeletion from './basketDeletion.presenter';
 import { connect } from 'react-redux';
 

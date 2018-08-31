@@ -1,6 +1,6 @@
 import { flatten } from 'lodash';
 import { SagaMiddleware } from 'redux-saga';
-import basketSagas from './basket/basket.saga';
+import basketSagas from './basket.saga';
 
 /**
  * List of all sagas

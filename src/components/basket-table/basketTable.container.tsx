@@ -1,7 +1,7 @@
 import { AppState } from '../../state/root.state';
 import { Props } from './basketTable.presenter';
 import { Dispatch } from 'redux';
-import { BasketActionCreators } from '../../state/actions/basket';
+import { BasketActionCreators } from '../../state/actions/basket.actions';
 import BasketTable from './basketTable.presenter';
 import { connect } from 'react-redux';
 

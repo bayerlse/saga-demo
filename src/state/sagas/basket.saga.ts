@@ -5,10 +5,10 @@ import {
 	ChangeArticleQuantityAction,
 	DeleteArticleClickedAction,
 	DeleteBasketClickedAction
-} from '../../actions/basket';
-import { createSagaRegistration } from '../../../util/store/sagaCreator';
-import { wait } from '../../../util/mocks/wait';
-import { AppState } from '../../root.state';
+} from '../actions/basket.actions';
+import { createSagaRegistration } from '../../util/store/sagaCreator';
+import { wait } from '../../util/mocks/wait';
+import { AppState } from '../root.state';
 
 /**
  * Business Logic (Flow) for deleting the whole basket
@@ -38,7 +38,7 @@ export const deleteArticle = () =>
 	function*(action: DeleteArticleClickedAction): Iterator<{}> {
 		const basketLength = yield select<AppState>((state) => state.basket.articles.length);
 		if (basketLength === 1) {
-			yield put(BasketActionCreators.deleteBasket());
+			yield put(BasketActionCreators.deleteBasketClicked());
 		} else {
 			yield put(BasketActionCreators.deleteArticle(action.payload.id));
 		}
@@ -60,7 +60,7 @@ export const changeArticleQuantity = () =>
 		if (articleQuantity === 0) {
 			yield put(BasketActionCreators.deleteArticle(articleId));
 			if (basketLength === 1) {
-				yield put(BasketActionCreators.deleteBasket());
+				yield put(BasketActionCreators.deleteBasketClicked());
 			}
 		} else {
 			yield put(BasketActionCreators.setArticleQuantity(articleId, articleQuantity));

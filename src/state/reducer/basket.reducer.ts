@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import { BasketState, initialState } from '../basket.state';
-import { BasketAction, BasketActionType } from '../actions/basket';
+import { BasketAction, BasketActionType } from '../actions/basket.actions';
 
 export const basketReducer: Reducer<BasketState, BasketAction> = (state = initialState, action) => {
 	switch (action.type) {

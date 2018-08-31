@@ -1,7 +1,7 @@
 import { AppState } from '../state/root.state';
 import { ConditionProps, ActionProps } from './basketView.presenter';
 import { Dispatch } from 'redux';
-import { BasketActionCreators } from '../state/actions/basket';
+import { BasketActionCreators } from '../state/actions/basket.actions';
 import BasketView from './basketView.presenter';
 import { connect } from 'react-redux';
 import { generateArticle } from '../util/mocks/articles';
