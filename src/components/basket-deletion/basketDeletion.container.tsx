@@ -6,7 +6,7 @@ import BasketDeletion from './basketDeletion.presenter';
 import { connect } from 'react-redux';
 
 /**
- * Map Redux state to BasketViewPresenter props
+ * Map Redux state to BasketDeletion  props
  * @param {AppState} state
  * @returns {ConditionProps}
  */
@@ -15,8 +15,7 @@ const mapStateToProps = (state: AppState): Pick<Props, 'isDisabled'> => ({
 });
 
 /**
- * Call the clickItemSaga when a table row is clicked
- * Handles (de/)select of table rows
+ * Call the delete Basket Saga when basket deletion is clicked
  * @param {Dispatch} dispatch
  * @returns {ActionProps}
  */
@@ -25,7 +24,7 @@ export const mapDispatchToProps = (dispatch: Dispatch): Pick<Props, 'onClick'> =
 });
 
 /**
- * Redux-wrapped BasketView
+ * Redux-wrapped BasketDeletion
  */
 const ConnectedBasketDeletion = connect(mapStateToProps, mapDispatchToProps)(BasketDeletion);
 

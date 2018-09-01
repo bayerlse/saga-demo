@@ -6,7 +6,7 @@ import BasketTable from './basketTable.presenter';
 import { connect } from 'react-redux';
 
 /**
- * Map Redux state to BasketViewPresenter props
+ * Map Redux state to BasketTablePresenter props
  * @param {RootState} state
  * @param {ContainerProps} ownProps
  * @returns {ConditionProps}
@@ -16,8 +16,8 @@ const mapStateToProps = (state: AppState): Pick<Props, 'articles'> => ({
 });
 
 /**
- * Call the clickItemSaga when a table row is clicked
- * Handles (de/)select of table rows
+ * Call the articleQuantityChanged Saga when quantity changed
+ * Call the articleDelete Saga when qarticle is deleted
  * @param {Dispatch} dispatch
  * @returns {ActionProps}
  */
@@ -28,7 +28,7 @@ export const mapDispatchToProps = (dispatch: Dispatch): Pick<Props, 'onArticleQu
 });
 
 /**
- * Redux-wrapped BasketView
+ * Redux-wrapped BasketTable
  */
 const ConnectedBasketTable = connect(mapStateToProps, mapDispatchToProps)(BasketTable);
 
