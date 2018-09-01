@@ -8,8 +8,7 @@ import { generateArticle } from '../util/mocks/articles';
 
 /**
  * Map Redux state to BasketViewPresenter props
- * @param {RootState} state
- * @param {ContainerProps} ownProps
+ * @param {AppState} state
  * @returns {ConditionProps}
  */
 const mapStateToProps = (state: AppState): ConditionProps => ({
@@ -17,8 +16,8 @@ const mapStateToProps = (state: AppState): ConditionProps => ({
 });
 
 /**
- * Call the clickItemSaga when a table row is clicked
- * Handles (de/)select of table rows
+ * Call the onAddArticle Saga when a add button is clicked
+ * Handles closing the basketInfo
  * @param {Dispatch} dispatch
  * @returns {ActionProps}
  */
