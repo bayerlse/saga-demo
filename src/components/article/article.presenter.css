@@ -1,0 +1,35 @@
+.card {
+	display: flex;
+	margin: 20px;
+  }
+  
+  .details {
+	display: flex;
+	flex-direction: column;
+	width: 100px;
+  }
+  
+  .content {
+	flex: 1 0 auto;
+  }
+  
+  .pic {
+	width: 100px;
+	height: 100px;
+  }
+  
+  .controls {
+	display: flex;
+	align-items: center;
+	padding-left: 20px;
+	padding-bottom: 20px;
+  }
+  
+  .quantity {
+	margin-top: 10px;
+	width: 60px;
+  }
+  
+  .delete {
+	padding: 10px;
+  }

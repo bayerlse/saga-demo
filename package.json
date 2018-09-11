@@ -7,6 +7,8 @@
     "url": "https://github.com/bayerlse/saga-demo.git"
   },
   "dependencies": {
+    "@material-ui/core": "^1.5.1",
+		"@material-ui/icons": "^3.0.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
