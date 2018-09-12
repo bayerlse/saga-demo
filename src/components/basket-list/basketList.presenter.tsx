@@ -1,7 +1,7 @@
 import * as React from "react";
 import ArticleItem, { Article } from "../article/article.presenter";
 import Typography from "@material-ui/core/Typography";
-import "./basketTable.presenter.css";
+import "./basketList.presenter.css";
 
 interface Props {
   articles: Article[];

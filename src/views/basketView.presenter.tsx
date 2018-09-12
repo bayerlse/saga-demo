@@ -2,7 +2,7 @@ import * as React from "react";
 import { Article } from "../components/article/article.presenter";
 import BasketDelete from "../components/basket-deletion/basketDeletion.presenter";
 import ArticleAdd from "../components/article-add/articleAdd.presenter";
-import BasketList from "../components/basket-table/basketTable.presenter";
+import BasketList from "../components/basket-list/basketList.presenter";
 import BasketInfo from "../modals/basket-info/basketInfo.presenter";
 import "./basketView.presenter.css";
 

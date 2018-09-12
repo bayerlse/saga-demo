@@ -9,7 +9,7 @@ import { generateArticle } from '../util/mocks/articles';
 /**
  * Interface for Actions that can trigger dispatches to redux store
  */
-export interface DispatchActions {
+export interface DispatchHandler {
 	deleteArticle: (articleId: number) => void;
 	changeArticleQuantity: (articleId: number, quantity: number) => void;
 	deleteBasket: () => void;
@@ -28,7 +28,7 @@ const mapStateToProps = (state: AppState, ownProps: {}): ConditionProps => ({
 	basketInfoVisibility: state.basket.isBasketInfoVisible
 });
 
-const bindActionsToDispatch = (dispatch: Dispatch<BasketAction>): DispatchActions => ({
+const bindDispatchToHandler = (dispatch: Dispatch<BasketAction>): DispatchHandler => ({
 	deleteArticle: (articleId) => dispatch(BasketActionCreators.deleteArticle(articleId)),
 	changeArticleQuantity: (id, quantity) => dispatch(BasketActionCreators.changeArticleQuantity(id, quantity)),
 	deleteBasket: () => dispatch(BasketActionCreators.deleteBasket()),
@@ -37,21 +37,22 @@ const bindActionsToDispatch = (dispatch: Dispatch<BasketAction>): DispatchAction
 });
 
 /**
- * Merge all props and handle validations and logic
+ * Merge result of mapStateToProps and bindDispatchToHandler
+ * to presenters props
  */
-export const mergeProps = (stateProps: ConditionProps, dispatchActions: DispatchActions): Props => {
+export const mergeProps = (stateProps: ConditionProps, dispatchHandler: DispatchHandler): Props => {
 	return {
 		...stateProps,
-		onDeleteBasket: () => handleBasketDelete(stateProps, dispatchActions),
-		onDeleteArticle: (articleId) => handleArticleDelete(articleId, stateProps, dispatchActions),
+		onDeleteBasket: () => handleBasketDelete(stateProps, dispatchHandler),
+		onDeleteArticle: (articleId) => handleArticleDelete(articleId, stateProps, dispatchHandler),
 		onArticleQuantityChange: (id, quantity) =>
-			handleArticleQuantityChange(id, quantity, stateProps, dispatchActions),
-		onAddArticle: dispatchActions.addArticle,
-		onBasketInfoClose: () => dispatchActions.setBasketInfoVisibility(false)
+			handleArticleQuantityChange(id, quantity, stateProps, dispatchHandler),
+		onAddArticle: dispatchHandler.addArticle,
+		onBasketInfoClose: () => dispatchHandler.setBasketInfoVisibility(false)
 	};
 };
 
-const handleBasketDelete = async (stateProps: ConditionProps, dispatchActions: DispatchActions) => {
+const handleBasketDelete = async (stateProps: ConditionProps, dispatchActions: DispatchHandler) => {
 	try {
 		// Simulate Backend Call
 		await wait(2000);
@@ -62,7 +63,7 @@ const handleBasketDelete = async (stateProps: ConditionProps, dispatchActions: D
 	}
 };
 
-const handleArticleDelete = (articleId: number, stateProps: ConditionProps, dispatchActions: DispatchActions) => {
+const handleArticleDelete = (articleId: number, stateProps: ConditionProps, dispatchActions: DispatchHandler) => {
 	if (stateProps.articles.length === 1) {
 		handleBasketDelete(stateProps, dispatchActions);
 	} else {
@@ -74,7 +75,7 @@ const handleArticleQuantityChange = (
 	articleId: number,
 	quantity: number,
 	stateProps: ConditionProps,
-	dispatchActions: DispatchActions
+	dispatchActions: DispatchHandler
 ) => {
 	if (quantity === 0) {
 		dispatchActions.deleteArticle(articleId);
@@ -89,9 +90,9 @@ const handleArticleQuantityChange = (
 /**
  * Redux-wrapped BasketView
  */
-const ConnectedBasketView = connect<ConditionProps, DispatchActions, {}, Props>(
+const ConnectedBasketView = connect<ConditionProps, DispatchHandler, {}, Props>(
 	mapStateToProps,
-	bindActionsToDispatch,
+	bindDispatchToHandler,
 	mergeProps
 )(BasketView);
 
